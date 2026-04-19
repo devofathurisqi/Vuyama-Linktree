@@ -1,22 +1,31 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink, Lock } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function PublicPage() {
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/links')
-      .then(res => res.json())
-      .then(data => {
-        // filter out inactive links
-        setLinks(data.filter(link => link.isActive));
-        setLoading(false);
-      })
-      .catch(err => {
+    async function fetchLinks() {
+      try {
+        const { data, error } = await supabase
+          .from('links')
+          .select('*')
+          .eq('isActive', true)
+          .order('orderIndex', { ascending: true })
+          .order('id', { ascending: false });
+
+        if (error) throw error;
+        setLinks(data || []);
+      } catch (err) {
         console.error('Error fetching links:', err);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchLinks();
   }, []);
 
   return (

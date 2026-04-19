@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Trash2, Edit2, Check, X, ShieldAlert, PlusCircle, LogOut } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,11 +23,18 @@ export default function AdminPage() {
     if (isLoggedIn) fetchLinks();
   }, [isLoggedIn]);
 
-  const fetchLinks = () => {
-    fetch('/api/links')
-      .then(res => res.json())
-      .then(data => setLinks(data))
-      .catch(err => console.error(err));
+  const fetchLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('links')
+        .select('*')
+        .order('orderIndex', { ascending: true })
+        .order('id', { ascending: false });
+      if (error) throw error;
+      setLinks(data || []);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleLogin = (e) => {
@@ -47,16 +55,13 @@ export default function AdminPage() {
   const handleAddLink = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/links', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, url, isActive: true })
-      });
-      if (res.ok) {
-        setTitle('');
-        setUrl('');
-        fetchLinks();
-      }
+      const { error } = await supabase
+        .from('links')
+        .insert([{ title, url, isActive: true }]);
+      if (error) throw error;
+      setTitle('');
+      setUrl('');
+      fetchLinks();
     } catch (err) {
       console.error(err);
     }
@@ -65,7 +70,11 @@ export default function AdminPage() {
   const handleDelete = async (id) => {
     if (!window.confirm('Yakin ingin menghapus tautan ini?')) return;
     try {
-      await fetch(`/api/links/${id}`, { method: 'DELETE' });
+      const { error } = await supabase
+        .from('links')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
       fetchLinks();
     } catch (err) {
       console.error(err);
@@ -74,11 +83,11 @@ export default function AdminPage() {
 
   const handleToggleActive = async (link) => {
     try {
-      await fetch(`/api/links/${link.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...link, isActive: !link.isActive })
-      });
+      const { error } = await supabase
+        .from('links')
+        .update({ isActive: !link.isActive })
+        .eq('id', link.id);
+      if (error) throw error;
       fetchLinks();
     } catch (err) {
       console.error(err);
@@ -93,11 +102,11 @@ export default function AdminPage() {
 
   const saveEdit = async (link) => {
     try {
-      await fetch(`/api/links/${link.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...link, title: editTitle, url: editUrl })
-      });
+      const { error } = await supabase
+        .from('links')
+        .update({ title: editTitle, url: editUrl })
+        .eq('id', link.id);
+      if (error) throw error;
       setEditingId(null);
       fetchLinks();
     } catch (err) {
