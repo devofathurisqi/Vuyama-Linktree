@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink, Lock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function PublicPage() {
+  const navigate = useNavigate();
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +44,36 @@ export default function PublicPage() {
           Curated Mukena & Hijab for the Modern Woman<br />
           <span className="brand-gold">Grace. Confidence. You.</span>
         </p>
+
+        <button 
+          onClick={() => navigate('/profile')} 
+          style={{
+            background: 'var(--text-main)',
+            color: 'var(--accent-color)',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: '30px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            marginTop: '10px',
+            marginBottom: '20px',
+            transition: 'all 0.3s',
+            boxShadow: 'var(--shadow-sm)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-hover)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'none';
+            e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+          }}
+        >
+          Discover Our Story ✨
+        </button>
       </div>
 
       <div className="links-container">
