@@ -38,8 +38,8 @@ export default function PublicPage() {
         />
         <h1 className="title">Vuyama ID</h1>
         <p className="subtitle">
-          Koleksi Exclusive Mukena & Kerudung Elegan.<br />
-          <span className="brand-gold">Perhiasan Dunia Adalah Wanita Shalihah.</span>
+          Curated Mukena & Hijab for the Modern Woman<br />
+          <span className="brand-gold">Grace. Confidence. You.</span>
         </p>
       </div>
 
@@ -65,7 +65,7 @@ export default function PublicPage() {
       </div>
 
       <div className="text-center" style={{ marginTop: '50px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-        <p>Powered by Devo Fathurisqi</p>
+        <p>Powered by Vuyama IT</p>
         <a href="/admin" title="Admin Login" style={{ display: 'inline-block', marginTop: '12px', color: 'var(--text-muted)', opacity: 0.3, transition: 'opacity 0.2s' }} onMouseEnter={e => e.currentTarget.style.opacity = 0.8} onMouseLeave={e => e.currentTarget.style.opacity = 0.3}>
           <Lock size={16} />
         </a>
