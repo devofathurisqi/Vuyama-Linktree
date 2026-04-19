@@ -1,0 +1,157 @@
+/* ProfileSkeleton.css - Premium Shimmer Loading Effects */
+
+.skeleton-wrapper {
+  background: #fff;
+  width: 100%;
+  overflow: hidden;
+}
+
+.skeleton {
+  background: #e5e7eb;
+  background-image: linear-gradient(
+    90deg,
+    #e5e7eb 0%,
+    #f3f4f6 50%,
+    #e5e7eb 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+  animation: shimmer 1.2s infinite ease-in-out;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+/* Navbar Skeleton */
+.skeleton-nav {
+  height: 80px;
+  width: 100%;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.skeleton-brand {
+  width: 120px;
+  height: 24px;
+}
+
+.skeleton-links {
+  display: flex;
+  gap: 32px;
+}
+
+.skeleton-link {
+  width: 80px;
+  height: 16px;
+}
+
+/* Hero Skeleton */
+.skeleton-hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  background: #fcfcfc;
+}
+
+.skeleton-tagline {
+  width: 150px;
+  height: 14px;
+  margin-bottom: 24px;
+}
+
+.skeleton-title {
+  width: 60%;
+  max-width: 600px;
+  height: 56px;
+  margin-bottom: 20px;
+}
+
+.skeleton-desc {
+  width: 80%;
+  max-width: 500px;
+  height: 16px;
+  margin-bottom: 8px;
+}
+
+.skeleton-btn {
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 30px;
+}
+
+/* Section Skeleton */
+.skeleton-section {
+  padding: 100px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.skeleton-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-img-box {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+}
+
+/* Collections Grid Skeleton */
+.skeleton-collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.skeleton-card {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skeleton-links {
+    display: none;
+  }
+  .skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+  .skeleton-title {
+    width: 80%;
+    height: 40px;
+  }
+}

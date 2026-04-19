@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Profile.css';
+import ProfileSkeleton from '../components/Skeleton/ProfileSkeleton';
 
 // Importing assets dynamically for Carousels
 const armaniImages = Object.values(import.meta.glob('../assets/profile_assets/series_instagram_product/armani_velvet_series/*.{png,jpg,jpeg}', { eager: true }));
@@ -26,7 +27,16 @@ export default function CompanyProfilePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef(null);
+
+  // Loading Simulation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // 1.5s for a premium feel
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll detection & Intersection Observer for Reveal Animations
   useEffect(() => {
@@ -57,7 +67,7 @@ export default function CompanyProfilePage() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [isAudioPlaying]);
+  }, [isAudioPlaying, isLoading]);
 
   // Video Carousel Timer
   useEffect(() => {
@@ -87,8 +97,12 @@ export default function CompanyProfilePage() {
     }
   };
 
+  if (isLoading) {
+    return <ProfileSkeleton />;
+  }
+
   return (
-    <div className="profile-container">
+    <div className="profile-container fade-in">
       {/* Navbar Session */}
       <nav className={`profile-nav ${scrolled ? 'scrolled' : ''}`}>
         <a href="#" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} className="nav-brand">
@@ -330,7 +344,19 @@ function CollectionCarousel({ images, title, desc, delayClass }) {
 
   return (
     <div className={`collection-card ${delayClass}`}>
-      <img src={images[currentIndex]?.default || images[currentIndex]} alt={title} loading="lazy" />
+      <div 
+        className="images-slider" 
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((img, idx) => (
+          <img 
+            key={idx} 
+            src={img.default || img} 
+            alt={`${title} - ${idx}`} 
+            loading="lazy" 
+          />
+        ))}
+      </div>
 
       {images.length > 1 && (
         <div className="carousel-controls">
