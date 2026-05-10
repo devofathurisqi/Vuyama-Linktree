@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ExternalLink, Lock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import WelcomePopup from '../components/PopUp/WelcomePopUp';
+import WelcomePopup from '../components/Popup/WelcomePopUp';
 
 
 export default function PublicPage() {
