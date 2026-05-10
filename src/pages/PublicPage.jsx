@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { ExternalLink, Lock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import WelcomePopup from '../components/PopUp/WelcomePopUp';
 
 
 export default function PublicPage() {
   const navigate = useNavigate();
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     async function fetchLinks() {
@@ -33,6 +35,10 @@ export default function PublicPage() {
 
   return (
     <div className="container">
+      <WelcomePopup
+        open={showPopup}
+        onClose={() => setShowPopup(false)}
+      />
       <div className="text-center" style={{ marginBottom: '40px' }}>
         <img
           src="/vuyama-profile.svg"
@@ -45,8 +51,8 @@ export default function PublicPage() {
           <span className="brand-gold">Grace. Confidence. You.</span>
         </p>
 
-        <button 
-          onClick={() => navigate('/profile')} 
+        <button
+          onClick={() => navigate('/profile')}
           style={{
             background: 'var(--text-main)',
             color: 'var(--accent-color)',
@@ -98,7 +104,8 @@ export default function PublicPage() {
       </div>
 
       <div className="text-center" style={{ marginTop: '50px', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-        <p>Powered by Vuyama IT</p>
+        <p>Beware of scammers</p>
+        <p style={{ marginTop: '10px' }}>Powered by Vuyama IT</p>
         <a href="/admin" title="Admin Login" style={{ display: 'inline-block', marginTop: '12px', color: 'var(--text-muted)', opacity: 0.3, transition: 'opacity 0.2s' }} onMouseEnter={e => e.currentTarget.style.opacity = 0.8} onMouseLeave={e => e.currentTarget.style.opacity = 0.3}>
           <Lock size={16} />
         </a>
