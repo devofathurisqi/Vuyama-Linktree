@@ -4,6 +4,10 @@ import './WelcomePopup.css';
 export default function WelcomePopup({ open, onClose }) {
     if (!open) return null;
 
+    const message = encodeURIComponent(
+        "Halo ka! syarat jadi reseller apa saja ya?"
+    );
+
     return (
         <div className="popup-overlay">
             <div className="popup-card">
@@ -30,7 +34,7 @@ export default function WelcomePopup({ open, onClose }) {
                     <div className="popup-admin-list">
 
                         <a
-                            href="https://wa.me/6285882450652"
+                            href={`https://wa.me/6285882450652?text=${message}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="popup-admin-card"
@@ -46,7 +50,7 @@ export default function WelcomePopup({ open, onClose }) {
                         </a>
 
                         <a
-                            href="https://wa.me/6285339095119"
+                            href={`https://wa.me/6285339095119?text=${message}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="popup-admin-card"
@@ -62,7 +66,7 @@ export default function WelcomePopup({ open, onClose }) {
                         </a>
 
                         <a
-                            href="https://wa.me/628211329450"
+                            href={`https://wa.me/628211329450?text=${message}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="popup-admin-card"
