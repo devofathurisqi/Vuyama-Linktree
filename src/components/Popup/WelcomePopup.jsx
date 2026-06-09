@@ -66,14 +66,14 @@ export default function WelcomePopup({ open, onClose }) {
                         </a>
 
                         <a
-                            href={`https://wa.me/628211329450?text=${message}`}
+                            href={`https://wa.me/6282113294501?text=${message}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="popup-admin-card"
                         >
                             <div>
                                 <p className="popup-admin-name">CS Alya</p>
-                                <p className="popup-admin-number">0821-1329-450</p>
+                                <p className="popup-admin-number">0821-1329-4501</p>
                             </div>
 
                             <span className="popup-admin-action">
