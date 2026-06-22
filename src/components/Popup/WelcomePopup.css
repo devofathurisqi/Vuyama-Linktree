@@ -50,6 +50,25 @@
     -webkit-backdrop-filter: blur(18px);
 
     border: 1px solid rgba(255, 255, 255, 0.4);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.popup-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.popup-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.popup-card::-webkit-scrollbar-thumb {
+    background: rgba(197, 168, 128, 0.3);
+    border-radius: 10px;
+}
+
+.popup-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(197, 168, 128, 0.6);
 }
 
 .popup-close {
