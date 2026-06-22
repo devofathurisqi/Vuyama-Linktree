@@ -27,7 +27,7 @@ export default function PublicPage() {
     const defaultCS = [
       { name: "CS Putri", number: "085882450652" },
       { name: "CS Renita", number: "085339095119" },
-      { name: "CS Alya", number: "08211329450" },
+      { name: "CS Alya", number: "082113294501" },
       { name: "Vumin - AI Bot assistant", number: "085694060878" }
     ];
 
