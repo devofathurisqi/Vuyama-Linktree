@@ -21,8 +21,8 @@ export default function AdminPage() {
   const [popupAdmins, setPopupAdmins] = useState([
     { name: 'CS Putri', number: '0858-8245-0652' },
     { name: 'CS Renita', number: '0853-3909-5119' },
-    { name: 'CS Alya', number: '0821-1329-4501' },
-    { name: 'Vumin - AI Bot assistant', number: '0856-9406-0878' }
+    { name: 'CS Alya', number: '0821-1329-4501' }
+    // { name: 'Vumin - AI Bot assistant', number: '0856-9406-0878' }
   ]);
   const [popupBankAccounts, setPopupBankAccounts] = useState([
     { bankName: 'BCA', accountNumber: '167-160453-4', holderName: 'Pramesthy Kaulaswara Annur' },
